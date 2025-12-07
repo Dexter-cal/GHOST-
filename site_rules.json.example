@@ -1,0 +1,22 @@
+{
+  "example.com": {
+    "signup_url": "https://example.com/register",
+    "fields": {
+      "username": { "by": "name", "value": "username" },
+      "email": { "by": "id", "value": "email_address" },
+      "password": { "by": "css", "value": "input[type='password']" }
+    },
+    "submit_button": { "by": "xpath", "value": "//button[text()='Sign Up']" },
+    "post_submit_wait_seconds": 5
+  },
+  "another-site.org": {
+    "signup_url": "https://another-site.org/join",
+    "fields": {
+      "username": { "by": "id", "value": "user-name" },
+      "email": { "by": "name", "value": "email" },
+      "password": { "by": "id", "value": "password-field" }
+    },
+    "submit_button": { "by": "css", "value": "#submit-btn" },
+    "post_submit_wait_seconds": 3
+  }
+}
