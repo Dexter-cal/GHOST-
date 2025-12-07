@@ -3,8 +3,8 @@ from cryptography.fernet import Fernet
 
 class MemoryVault:
     """
-    An enhanced, secure vault for storing sensitive data, with support
-    for per-engagement segmentation and auto-expiry.
+    An enhanced, secure vault for storing sensitive data, now with the
+    ability to retrieve all credentials for a given engagement.
     """
     def __init__(self, key):
         self.fernet = Fernet(key)
@@ -39,6 +39,21 @@ class MemoryVault:
         encrypted_value = self.engagements[engagement_id][credential_name]
         decrypted_value = self.fernet.decrypt(encrypted_value).decode()
         return decrypted_value
+
+    def retrieve_engagement_credentials(self, engagement_id):
+        """
+        Retrieves and decrypts all credentials for a given engagement.
+        """
+        if engagement_id not in self.engagements:
+            return None
+
+        credentials = {}
+        for name, enc_value in self.engagements[engagement_id].items():
+            try:
+                credentials[name] = self.fernet.decrypt(enc_value).decode()
+            except Exception:
+                credentials[name] = "[DECRYPTION_ERROR]"
+        return credentials
 
     # The auto-expiry feature would require a background process to check
     # timestamps, which is beyond the scope of this single-file implementation.

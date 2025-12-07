@@ -1,22 +1,38 @@
 {
   "example.com": {
     "signup_url": "https://example.com/register",
-    "fields": {
+    "signup_fields": {
       "username": { "by": "name", "value": "username" },
       "email": { "by": "id", "value": "email_address" },
       "password": { "by": "css", "value": "input[type='password']" }
     },
-    "submit_button": { "by": "xpath", "value": "//button[text()='Sign Up']" },
+    "signup_submit_button": { "by": "xpath", "value": "//button[text()='Sign Up']" },
+
+    "login_url": "https://example.com/login",
+    "login_fields": {
+      "username": { "by": "name", "value": "username" },
+      "password": { "by": "name", "value": "password" }
+    },
+    "login_submit_button": { "by": "id", "value": "login-button" },
+
     "post_submit_wait_seconds": 5
   },
   "another-site.org": {
     "signup_url": "https://another-site.org/join",
-    "fields": {
+    "signup_fields": {
       "username": { "by": "id", "value": "user-name" },
       "email": { "by": "name", "value": "email" },
       "password": { "by": "id", "value": "password-field" }
     },
-    "submit_button": { "by": "css", "value": "#submit-btn" },
+    "signup_submit_button": { "by": "css", "value": "#submit-btn" },
+
+    "login_url": "https://another-site.org/login",
+    "login_fields": {
+      "username": { "by": "name", "value": "user" },
+      "password": { "by": "name", "value": "pass" }
+    },
+    "login_submit_button": { "by": "css", "value": "button.login" },
+
     "post_submit_wait_seconds": 3
   }
 }
