@@ -1,3 +1,13 @@
 selenium
 requests
 cryptography
+python-docx
+openpyxl
+google-generativeai
+pypdf2
+python-pptx
+pylnk3
+qrcode
+pyshorteners
+bitcoinlib
+pyargon2

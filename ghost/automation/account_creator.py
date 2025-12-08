@@ -3,17 +3,55 @@ import os
 import time
 from selenium.webdriver.common.by import By
 
-class AccountAutomator: # Renamed for clarity
+class AccountAutomator:
     """
-    Orchestrates automated interactions with a website, such as signing up
-    or logging in, using a StepWalker and site-specific rules.
+    Orchestrates automated interactions, now with a new flow for
+    automated account deletion.
     """
     def __init__(self, step_walker, browser, rules_path="site_rules.json"):
+        # ... (same as before) ...
         self.step_walker = step_walker
         self.browser = browser
         self.rules_path = rules_path
         self.rules = self._load_rules()
 
+    # ... ( _load_rules, _find_element, _handle_captcha are the same) ...
+
+    def run_account_deletion_flow(self, domain, username):
+        """Runs the account deletion flow for a given domain."""
+        rule = self.rules.get(domain)
+        if not rule:
+            print(f"Error: No site rules found for domain '{domain}'.")
+            return False
+
+        print(f"Automator: Starting account deletion for '{username}' on '{domain}'...")
+        try:
+            # First, we must log in to access the account settings page.
+            # This assumes a login has just occurred.
+
+            self.browser.get(rule["account_deletion_url"], domain)
+
+            # Fill in confirmation field if it exists
+            if "account_deletion_confirmation_field" in rule:
+                conf_loc = rule["account_deletion_confirmation_field"]
+                conf_field = self._find_element(conf_loc["by"], conf_loc["value"])
+                # The confirmation often requires typing the username
+                self.step_walker.human_like_typing(conf_field, username)
+
+            # Click the final delete button
+            del_loc = rule["account_deletion_submit_button"]
+            del_button = self._find_element(del_loc["by"], del_loc["value"])
+            self.step_walker.human_like_click(del_button)
+
+            print("Automator: Account deletion submitted.")
+            time.sleep(rule.get("post_submit_wait_seconds", 5))
+            return True
+
+        except Exception as e:
+            print(f"An error occurred during account deletion for {domain}: {e}")
+            return False
+
+    # ... (signup and login flows remain the same) ...
     def _load_rules(self):
         """Loads the site rules from the specified JSON file."""
         if not os.path.exists(self.rules_path):

@@ -13,15 +13,15 @@ class TempEmailService:
 
     def get_temp_email(self):
         """
-        Fetches a new temporary email address.
-
-        Returns:
-            str: A temporary email address.
+        Fetches a new temporary email address. (Placeholder)
         """
-        print("TempEmailService: Fetching temporary email (using placeholder)...")
-        # This is a placeholder. A real implementation would make an API call.
-        # For demonstration purposes, we'll return a static, non-functional email.
-        return "ghost-test-user@example.com"
+        print("\n--- Placeholder Service ---")
+        print("TempEmailService is a placeholder. To create verifiable accounts,")
+        print("you must edit 'ghost/services/temp_email.py' and integrate a")
+        print("real temporary email API provider.")
+        print("Returning a dummy email for this demonstration.")
+        print("--------------------------")
+        return f"ghost_{int(time.time())}@example.com"
 
     def check_inbox(self, email_address):
         """

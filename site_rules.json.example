@@ -15,24 +15,11 @@
     },
     "login_submit_button": { "by": "id", "value": "login-button" },
 
+    "account_deletion_url": "https://example.com/account/delete",
+    "account_deletion_confirmation_field": { "by": "name", "value": "confirm_username" },
+    "account_deletion_submit_button": { "by": "css", "value": "button.delete-account" },
+
+    "captcha_selector": { "by": "css", "value": "div.g-recaptcha" },
     "post_submit_wait_seconds": 5
-  },
-  "another-site.org": {
-    "signup_url": "https://another-site.org/join",
-    "signup_fields": {
-      "username": { "by": "id", "value": "user-name" },
-      "email": { "by": "name", "value": "email" },
-      "password": { "by": "id", "value": "password-field" }
-    },
-    "signup_submit_button": { "by": "css", "value": "#submit-btn" },
-
-    "login_url": "https://another-site.org/login",
-    "login_fields": {
-      "username": { "by": "name", "value": "user" },
-      "password": { "by": "name", "value": "pass" }
-    },
-    "login_submit_button": { "by": "css", "value": "button.login" },
-
-    "post_submit_wait_seconds": 3
   }
 }
