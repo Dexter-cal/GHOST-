@@ -1,0 +1,9 @@
+
+--- WARNING: GHOST_VAULT_KEY not set for dashboard! ---
+Using a temporary, insecure key for this session only.
+Set the environment variable for persistence.
+-----------------------------------------------------
+
+FATAL: Could not initialize Ghost Orchestrator: name 'MasterVault' is not defined
+ * Serving Flask app 'app'
+ * Debug mode: on
